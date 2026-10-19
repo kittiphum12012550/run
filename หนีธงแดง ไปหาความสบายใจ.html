@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<title>หนีธงแดง ไปหาความสบายใจ</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg1:#fff0f7;--bg2:#ffd9ec;--card:#ffffff;--text:#4a1030;--muted:#b0487f;--red:#ec4899;--red2:#f9a8d4;--shadow:0 20px 50px rgba(236,72,153,.18);
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg1:#1f0714;--bg2:#330c22;--card:#3a1028;--text:#ffe6f2;--muted:#f5a9d0;--shadow:0 20px 50px rgba(0,0,0,.5)}}
+:root[data-theme="dark"]{--bg1:#1f0714;--bg2:#330c22;--card:#3a1028;--text:#ffe6f2;--muted:#f5a9d0;--shadow:0 20px 50px rgba(0,0,0,.5)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:'Prompt',system-ui,'Noto Sans Thai',sans-serif;color:var(--text);background:radial-gradient(circle at 20% 10%,var(--bg2),var(--bg1) 60%);background-color:var(--bg1);display:flex;align-items:center;justify-content:center;padding:24px;overflow-x:hidden}
+.wrap{width:100%;max-width:520px;text-align:center;position:relative;z-index:2}
+.flag{font-size:64px;display:inline-block;animation:wave 2.2s ease-in-out infinite;transform-origin:20% 90%}
+@keyframes wave{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(10deg)}}
+h1{font-weight:800;font-size:clamp(28px,7vw,40px);margin:8px 0 4px;background:linear-gradient(90deg,var(--red),var(--red2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:var(--muted);margin:0 0 24px;font-size:15px}
+.card{background:var(--card);border-radius:28px;padding:32px 24px;box-shadow:var(--shadow);border:1px solid rgba(236,72,153,.15);min-height:190px;display:flex;flex-direction:column;justify-content:center;gap:10px}
+.msg{font-size:clamp(20px,5vw,26px);font-weight:600;line-height:1.5;transition:opacity .25s,transform .25s}
+.msg.out{opacity:0;transform:translateY(8px)}
+.tag{font-size:13px;color:var(--muted)}
+button{font-family:inherit;cursor:pointer;border:0}
+.go{margin-top:22px;background:linear-gradient(135deg,var(--red),var(--red2));color:#fff;font-weight:600;font-size:18px;padding:16px 34px;border-radius:999px;box-shadow:0 10px 24px rgba(236,72,153,.35);transition:transform .15s}
+.go:active{transform:scale(.95)}
+.row{margin-top:16px;display:flex;gap:10px;justify-content:center;align-items:center;color:var(--muted);font-size:14px}
+.row button{background:transparent;color:var(--muted);border:1px solid rgba(236,72,153,.3);border-radius:999px;padding:6px 14px;font-size:14px}
+.foot{margin-top:28px;font-size:13px;color:var(--muted)}
+.heart{position:fixed;bottom:-30px;font-size:24px;pointer-events:none;z-index:1;animation:up 3s linear forwards}
+@keyframes up{to{transform:translateY(-110vh) rotate(25deg);opacity:0}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="flag">🚩</div>
+  <h1>หนีธงแดง ไปหาความสบายใจ</h1>
+  <p class="sub">กำลังใจสำหรับคนที่กำลังเดินออกจากความสัมพันธ์ที่ทำให้เหนื่อยใจ</p>
+  <div class="card">
+    <div class="msg" id="msg">เธอไม่ได้อยู่คนเดียวนะ กดปุ่มด้านล่างเพื่อรับกำลังใจ</div>
+    <div class="tag" id="tag">ส่งใจให้เธอ</div>
+  </div>
+  <button class="go" id="go">ขอกำลังใจหน่อย 🌷</button>
+  <div class="row"><span>รับไปแล้ว <b id="n">0</b> ครั้ง</span><button id="copy">คัดลอก</button><button id="theme">🌓</button></div>
+  <div class="foot">ถ้ารู้สึกไม่ปลอดภัย ติดต่อคนที่ไว้ใจ หรือโทรสายด่วน 1300 ได้ตลอด 24 ชั่วโมง 💗</div>
+</div>
+<script>
+const M=[
+["เธอไม่ได้ใจร้ายที่เลือกจากมา เธอแค่รักตัวเองมากพอ","ถูกต้องแล้ว"],
+["คนที่รักเธอจริง ไม่ทำให้เธอต้องสงสัยในคุณค่าของตัวเองทุกวัน","จำไว้นะ"],
+["การเดินจากมา ไม่ใช่การแพ้ แต่คือการเลือกตัวเองเป็นครั้งแรก","กล้าหาญมาก"],
+["ที่ผ่านมาเธอพยายามเต็มที่แล้ว ไม่ใช่ความผิดของเธอที่เขาไม่เปลี่ยน","ไม่ต้องโทษตัวเอง"],
+["ธงแดงไม่ใช่สิ่งที่ต้องอดทนหรือแก้ไข แต่เป็นสัญญาณให้เธอเดินออกมา","เชื่อสัญชาตญาณตัวเอง"],
+["วันนี้จะคิดถึงเขาก็ได้ ร้องไห้ก็ได้ แต่อย่ากลับไปนะ เธอมาไกลแล้ว","ใจเย็นๆ ไปทีละวัน"],
+["ความสงบในใจ มีค่ากว่าความรักที่ต้องคอยเดาอารมณ์ทุกวัน","รักที่ดีไม่ต้องเหนื่อยขนาดนี้"],
+["เธอไม่ต้องเป็นคนที่ดีพอสำหรับคนที่ไม่เคยเห็นค่าเธอ","เธอดีพออยู่แล้ว"],
+["คนที่ใช่ จะทำให้เธอรู้สึกปลอดภัย ไม่ใช่รู้สึกต้องระวังตัวตลอดเวลา","เธอสมควรได้รับสิ่งนี้"],
+["เสียใจได้ ใจสลายได้ แต่ใจเธอจะค่อยๆ กลับมาแข็งแรงอีกครั้ง","เวลาช่วยเธอได้"],
+["ขอบคุณตัวเองที่กล้าออกมา วันนี้เธอเก่งมากจริงๆ","กอดๆ"],
+["ข้างหน้ายังมีคนดีๆ และวันดีๆ รออยู่ และคนแรกที่ต้องรักเธอ คือตัวเธอเอง","เดินต่อไปนะ"]
+];
+const $=id=>document.getElementById(id);
+let last=-1,n=0;
+function hearts(){for(let i=0;i<10;i++){const h=document.createElement('div');h.className='heart';h.textContent=['💗','🌷','🕊️','✨'][i%4];h.style.left=Math.random()*100+'vw';h.style.animationDelay=Math.random()*.6+'s';document.body.appendChild(h);setTimeout(()=>h.remove(),3800)}}
+$('go').onclick=()=>{
+  let i;do{i=Math.floor(Math.random()*M.length)}while(i===last);last=i;
+  $('msg').classList.add('out');
+  setTimeout(()=>{$('msg').textContent=M[i][0];$('tag').textContent=M[i][1];$('msg').classList.remove('out')},200);
+  n++;$('n').textContent=n;hearts();
+};
+$('copy').onclick=()=>{
+  const t=$('msg').textContent;
+  try{navigator.clipboard.writeText(t);$('copy').textContent='คัดลอกแล้ว ✓'}catch(e){$('copy').textContent='คัดลอกไม่ได้'}
+  setTimeout(()=>$('copy').textContent='คัดลอก',1500);
+};
+$('theme').onclick=()=>{
+  const r=document.documentElement;
+  const dark=r.dataset.theme?r.dataset.theme==='dark':matchMedia('(prefers-color-scheme:dark)').matches;
+  r.dataset.theme=dark?'light':'dark';
+};
+</script>
+</body>
+</html>
